@@ -14,7 +14,7 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { changeFilter } = filtersSlice.actions;
+export const { setMakeFilter } = filtersSlice.actions;
 
 export const selectCarFilter = (state) => state.filters.make;
 

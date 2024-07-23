@@ -5,9 +5,13 @@ axios.defaults.baseURL = "https://669f65afb132e2c136fdb2eb.mockapi.io";
 
 export const fetchAdverts = createAsyncThunk(
   "adverts/fetchAll",
-  async (_, thunkAPI) => {
+  async ({ page = 1, limit = 12, make }, thunkAPI) => {
     try {
-      const response = await axios.get("/adverts");
+      let query = `/adverts?page=${page}&limit=${limit}`;
+      if (make) {
+        query += `&make=${make}`;
+      }
+      const response = await axios.get(query);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

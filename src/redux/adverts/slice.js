@@ -5,11 +5,19 @@ const initialState = {
   adverts: [],
   loading: false,
   error: false,
+  page: 1,
+  hasMore: true,
 };
 const advertsSlice = createSlice({
   name: "adverts",
   initialState,
-  reducers: {},
+  reducers: {
+    resetAdverts: (state) => {
+      state.adverts = [];
+      state.page = 1;
+      state.hasMore = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAdverts.pending, (state) => {
@@ -17,7 +25,11 @@ const advertsSlice = createSlice({
       })
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.loading = false;
-        state.adverts = action.payload;
+        state.adverts = [...state.adverts, ...action.payload];
+        state.page += 1;
+        if (action.payload.length < 12) {
+          state.hasMore = false;
+        }
       })
       .addCase(fetchAdverts.rejected, (state, action) => {
         state.loading = false;
@@ -26,4 +38,5 @@ const advertsSlice = createSlice({
   },
 });
 
+export const { resetAdverts } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;
