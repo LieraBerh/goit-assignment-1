@@ -7,7 +7,7 @@ export const fetchAdverts = createAsyncThunk(
   "adverts/fetchAll",
   async ({ page = 1, limit = 12, make }, thunkAPI) => {
     try {
-      let query = `/adverts?page=${page}&limit=${limit}`;
+      let query = `/Advert?page=${page}&limit=${limit}`;
       if (make) {
         query += `&make=${make}`;
       }

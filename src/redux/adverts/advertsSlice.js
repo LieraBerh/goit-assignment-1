@@ -39,4 +39,4 @@ const advertsSlice = createSlice({
 });
 
 export const { resetAdverts } = advertsSlice.actions;
-export const advertsReducer = advertsSlice.reducer;
+export default advertsSlice.reducer;

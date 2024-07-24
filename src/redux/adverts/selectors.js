@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { selectCarFilter } from "../filters/slice";
+import { selectCarFilter } from "../filters/filtersSlice";
 
 export const selectAdverts = (state) => state.adverts.adverts;
 
@@ -8,6 +8,7 @@ export const selectLoading = (state) => state.adverts.loading;
 export const selectError = (state) => state.adverts.error;
 
 export const selectPage = (state) => state.adverts.page;
+
 export const selectHasMore = (state) => state.adverts.hasMore;
 
 export const selectFilteredAdverts = createSelector(

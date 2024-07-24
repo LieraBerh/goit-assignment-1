@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { advertsReducer } from "./adverts/slice";
-import { favoritesReducer } from "./favorites/slice";
-import { filtersReducer } from "./filters/slice";
+import advertsReducer from "./adverts/advertsSlice.js";
+import favoritesReducer from "./favorites/favoritesSlice.js";
+import filtersReducer from "./filters/filtersSlice.js";
 
 const rootReducer = combineReducers({
   adverts: advertsReducer,

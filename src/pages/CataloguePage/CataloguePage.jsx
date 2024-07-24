@@ -3,7 +3,7 @@ import Catalogue from "../../components/Catalogue/Catalogue";
 import { useEffect } from "react";
 import { fetchAdverts } from "../../redux/adverts/operations";
 import { selectPage } from "../../redux/adverts/selectors";
-import { selectCarFilter } from "../../redux/filters/slice";
+import { selectCarFilter } from "../../redux/filters/filtersSlice";
 
 const CataloguePage = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const CataloguePage = () => {
   useEffect(() => {
     dispatch(fetchAdverts({ page, make }));
   }, [dispatch, page, make]);
+
   return (
     <div>
       <Catalogue />

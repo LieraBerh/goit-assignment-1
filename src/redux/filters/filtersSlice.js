@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  make: "",
+  make: null,
 };
 
 const filtersSlice = createSlice({
@@ -18,4 +18,4 @@ export const { changeFilter } = filtersSlice.actions;
 
 export const selectCarFilter = (state) => state.filters.make;
 
-export const filtersReducer = filtersSlice.reducer;
+export default filtersSlice.reducer;
