@@ -4,7 +4,7 @@ import { fetchAdverts } from "./operations";
 const initialState = {
   adverts: [],
   loading: false,
-  error: false,
+  error: null,
   page: 1,
   hasMore: true,
 };

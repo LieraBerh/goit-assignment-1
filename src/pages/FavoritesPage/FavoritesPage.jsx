@@ -1,4 +1,8 @@
+import { useLocation } from "react-router-dom";
+
 const FavoritesPage = () => {
-  return <div></div>;
+  const location = useLocation();
+
+  return <div>Favorites Page</div>;
 };
 export default FavoritesPage;
