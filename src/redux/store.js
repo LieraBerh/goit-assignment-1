@@ -1,4 +1,4 @@
-import advertsReducer from "./adverts/advertsSlice.js";
+import advertsReducer from "./adverts/advertsSlice";
 import favoritesReducer from "./favorites/favoritesSlice.js";
 import filtersReducer from "./filters/filtersSlice.js";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";

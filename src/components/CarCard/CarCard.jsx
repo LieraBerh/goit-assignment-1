@@ -16,7 +16,7 @@ const CarCard = ({
     <div className={s.card_wrapper}>
       <img src={src} alt={alt} className={s.car_img} />
       <h3>
-        {brand} {model} {year} $ {rentalPrice}
+        {brand} {model} {year} {rentalPrice}
       </h3>
       <p>
         {address} | {rentalCompany} | {accessories[2]} | {mileage}

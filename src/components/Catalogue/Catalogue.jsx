@@ -1,21 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectFilteredAdverts,
   selectHasMore,
-  selectPage,
 } from "../../redux/adverts/selectors";
-import { useDispatch, useSelector } from "react-redux";
 import CarCard from "../CarCard/CarCard";
 import s from "./Catalogue.module.css";
-import { fetchAdverts } from "../../redux/adverts/operations";
+import { updatePage } from "../../redux/adverts/advertsSlice";
 
 const Catalogue = () => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectFilteredAdverts);
-  const page = useSelector(selectPage);
   const hasMore = useSelector(selectHasMore);
 
   const handleLoadMore = () => {
-    dispatch(fetchAdverts({ page: page + 1 }));
+    dispatch(updatePage());
   };
 
   return (
@@ -56,4 +54,5 @@ const Catalogue = () => {
     </div>
   );
 };
+
 export default Catalogue;
