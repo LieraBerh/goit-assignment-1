@@ -11,10 +11,13 @@ const filtersSlice = createSlice({
     changeFilter(state, action) {
       state.make = action.payload;
     },
+    resetFilter(state) {
+      state.make = null;
+    },
   },
 });
 
-export const { changeFilter } = filtersSlice.actions;
+export const { changeFilter, resetFilter } = filtersSlice.actions;
 
 export const selectCarFilter = (state) => state.filters.make;
 

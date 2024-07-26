@@ -35,6 +35,7 @@ const Catalogue = () => {
           }) => (
             <li key={id} className={s.catalogue_item}>
               <CarCard
+                id={id} // Передайте id тут
                 src={img}
                 alt={description}
                 year={year}
