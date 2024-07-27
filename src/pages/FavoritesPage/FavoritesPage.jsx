@@ -1,47 +1,36 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/favorites/favoritesSlice";
-import CarCard from "../../components/CarCard/CarCard";
+import Catalogue from "../../components/Catalogue/Catalogue";
+import { useState } from "react";
+import CarDetails from "../../components/CarDetailsModal/CarDetails";
 
 const FavoritesPage = () => {
+  const [selectAdvert, setSelectAdvert] = useState(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const favorites = useSelector(selectFavorites);
+
+  const handleModalOpen = (advert) => {
+    setIsOpenModal(true);
+    setSelectAdvert(advert);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+    setSelectAdvert(null);
+  };
 
   return (
     <div>
       {favorites.length > 0 ? (
-        <ul>
-          {favorites.map(
-            ({
-              id,
-              img,
-              description,
-              year,
-              make,
-              model,
-              rentalPrice,
-              address,
-              rentalCompany,
-              mileage,
-              accessories,
-            }) => (
-              <li key={id}>
-                <CarCard
-                  id={id}
-                  src={img}
-                  alt={description}
-                  year={year}
-                  brand={make}
-                  model={model}
-                  rentalPrice={rentalPrice}
-                  address={address}
-                  rentalCompany={rentalCompany}
-                  mileage={mileage}
-                  accessories={accessories}
-                />
-              </li>
-            )
-          )}
-        </ul>
+        <div>
+          <Catalogue adverts={favorites} handleModalOpen={handleModalOpen} />
+          <CarDetails
+            modalIsOpen={isOpenModal}
+            closeModal={closeModal}
+            selectAdvert={selectAdvert}
+          />
+        </div>
       ) : (
         <p>You haven't added any adverts to favorites yet.</p>
       )}

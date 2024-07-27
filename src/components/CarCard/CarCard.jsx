@@ -19,17 +19,17 @@ const CarCard = ({
   rentalCompany,
   mileage,
   accessories,
+  rentalConditions,
+  handleModalOpen,
 }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
 
-  // Check if this advert is already in favorites
   const isFavorite = favorites.some((advert) => advert.id === id);
 
-  // Handler for clicking the favorite button
   const handleFavoriteClick = () => {
     if (isFavorite) {
-      dispatch(removeFavorite({ id }));
+      dispatch(removeFavorite(id));
     } else {
       dispatch(addFavorite(id));
     }
@@ -39,7 +39,27 @@ const CarCard = ({
 
   return (
     <div className={s.card_wrapper}>
-      <img src={src} alt={alt} className={s.car_img} />
+      <img
+        src={src}
+        alt={alt}
+        className={s.car_img}
+        onClick={() =>
+          handleModalOpen({
+            id,
+            src,
+            alt,
+            year,
+            brand,
+            model,
+            rentalPrice,
+            address,
+            rentalCompany,
+            mileage,
+            accessories,
+            rentalConditions,
+          })
+        }
+      />
       <h3>
         {brand} {model} ({year}) - {rentalPrice}
       </h3>
