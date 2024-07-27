@@ -37,7 +37,7 @@ const CarDetails = ({ modalIsOpen, closeModal, selectAdvert }) => {
             <p>Rental Company: {selectAdvert.rentalCompany}</p>
             <p>Mileage: {numeral(selectAdvert.mileage).format("0,0")} miles</p>
             <p>Accessories: {selectAdvert.accessories.join(", ")}</p>
-            <p>Rental Conditions: {selectAdvert.rentalConditions}</p>
+            <p>Rental Conditions - {selectAdvert.rentalConditions}</p>
           </>
         )}
       </Modal>
