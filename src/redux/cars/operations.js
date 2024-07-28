@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://669f65afb132e2c136fdb2eb.mockapi.io";
+axios.defaults.baseURL = "https://66a6150823b29e17a1a1b01c.mockapi.io";
 
-export const fetchAdverts = createAsyncThunk(
-  "adverts/fetchAll",
+export const fetchCars = createAsyncThunk(
+  "cars/fetchAll",
   async ({ page, make }, thunkAPI) => {
     try {
-      let query = `/Advert?page=${page}&limit=12`;
+      let query = `/cars?page=${page}&limit=12`;
       if (make) {
         query += `&make=${make}`;
       }

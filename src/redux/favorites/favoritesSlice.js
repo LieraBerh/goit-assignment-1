@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllAdverts } from "./operations";
+import { fetchAllCars } from "./operations";
 
 const initialState = {
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
-  allAdverts: [],
+  allCars: [],
   status: "idle",
   error: null,
 };
@@ -14,29 +14,29 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite: (state, action) => {
       const id = action.payload;
-      const advert = state.allAdverts.find((item) => item.id === id);
-      if (advert && !state.favorites.some((item) => item.id === id)) {
-        state.favorites.push(advert);
+      const car = state.allCars.find((item) => item.id === id);
+      if (car && !state.favorites.some((item) => item.id === id)) {
+        state.favorites.push(car);
         localStorage.setItem("favorites", JSON.stringify(state.favorites));
       }
     },
     removeFavorite: (state, action) => {
       state.favorites = state.favorites.filter(
-        (advert) => advert.id !== action.payload
+        (car) => car.id !== action.payload
       );
       localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllAdverts.pending, (state) => {
+      .addCase(fetchAllCars.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAllAdverts.fulfilled, (state, action) => {
+      .addCase(fetchAllCars.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.allAdverts = action.payload;
+        state.allCars = action.payload;
       })
-      .addCase(fetchAllAdverts.rejected, (state, action) => {
+      .addCase(fetchAllCars.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
@@ -46,7 +46,7 @@ const favoritesSlice = createSlice({
 export const { addFavorite, removeFavorite } = favoritesSlice.actions;
 
 export const selectFavorites = (state) => state.favorites.favorites;
-export const selectAllAdverts = (state) => state.favorites.allAdverts;
+export const selectAllCars = (state) => state.favorites.allCars;
 export const selectFavoritesStatus = (state) => state.favorites.status;
 export const selectFavoritesError = (state) => state.favorites.error;
 

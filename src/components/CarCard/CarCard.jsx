@@ -25,7 +25,7 @@ const CarCard = ({
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
 
-  const isFavorite = favorites.some((advert) => advert.id === id);
+  const isFavorite = favorites.some((car) => car.id === id);
 
   const handleFavoriteClick = () => {
     if (isFavorite) {

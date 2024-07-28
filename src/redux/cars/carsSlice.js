@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAdverts } from "./operations";
+import { fetchCars } from "./operations";
 
 const initialState = {
-  adverts: [],
+  cars: [],
   loading: false,
   error: null,
   page: 1,
   hasMore: true,
 };
-const advertsSlice = createSlice({
-  name: "adverts",
+const carsSlice = createSlice({
+  name: "cars",
   initialState,
   reducers: {
-    resetAdverts: (state) => {
-      state.adverts = [];
+    resetCars: (state) => {
+      state.cars = [];
       state.page = 1;
       state.hasMore = true;
     },
@@ -23,28 +23,28 @@ const advertsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAdverts.pending, (state) => {
+      .addCase(fetchCars.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchAdverts.fulfilled, (state, action) => {
+      .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
         if (action.payload.length > 0) {
-          state.adverts =
+          state.cars =
             state.page === 1
               ? action.payload
-              : [...state.adverts, ...action.payload];
+              : [...state.cars, ...action.payload];
           state.hasMore = action.payload.length === 12;
         } else {
           state.hasMore = false;
         }
       })
-      .addCase(fetchAdverts.rejected, (state, action) => {
+      .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { resetAdverts, updatePage } = advertsSlice.actions;
-export default advertsSlice.reducer;
+export const { resetCars, updatePage } = carsSlice.actions;
+export default carsSlice.reducer;

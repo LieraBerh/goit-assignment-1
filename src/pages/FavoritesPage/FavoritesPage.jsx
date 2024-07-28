@@ -6,29 +6,29 @@ import { useState } from "react";
 import CarDetails from "../../components/CarDetailsModal/CarDetails";
 
 const FavoritesPage = () => {
-  const [selectAdvert, setSelectAdvert] = useState(null);
+  const [selectCar, setSelectCar] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const favorites = useSelector(selectFavorites);
 
-  const handleModalOpen = (advert) => {
+  const handleModalOpen = (car) => {
     setIsOpenModal(true);
-    setSelectAdvert(advert);
+    setSelectCar(car);
   };
 
   const closeModal = () => {
     setIsOpenModal(false);
-    setSelectAdvert(null);
+    setSelectCar(null);
   };
 
   return (
     <div>
       {favorites.length > 0 ? (
         <div>
-          <Catalogue adverts={favorites} handleModalOpen={handleModalOpen} />
+          <Catalogue cars={favorites} handleModalOpen={handleModalOpen} />
           <CarDetails
             modalIsOpen={isOpenModal}
             closeModal={closeModal}
-            selectAdvert={selectAdvert}
+            selectCar={selectCar}
           />
         </div>
       ) : (

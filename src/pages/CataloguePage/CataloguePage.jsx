@@ -1,62 +1,62 @@
 import { useDispatch, useSelector } from "react-redux";
 import Catalogue from "../../components/Catalogue/Catalogue";
 import { useEffect, useState } from "react";
-import { fetchAdverts } from "../../redux/adverts/operations";
+import { fetchCars } from "../../redux/cars/operations";
 import {
   selectCarFilter,
   changeFilter,
   resetFilter,
 } from "../../redux/filters/filtersSlice";
 import { useLocation } from "react-router-dom";
-import { resetAdverts, updatePage } from "../../redux/adverts/advertsSlice";
+import { resetCars, updatePage } from "../../redux/cars/carsSlice";
 import {
-  selectFilteredAdverts,
+  selectFilteredCars,
   selectHasMore,
   selectPage,
-} from "../../redux/adverts/selectors";
+} from "../../redux/cars/selectors";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { fetchAllAdverts } from "../../redux/favorites/operations";
+import { fetchAllCars } from "../../redux/favorites/operations";
 import CarDetails from "../../components/CarDetailsModal/CarDetails";
 
 const CataloguePage = () => {
-  const [selectAdvert, setSelectAdvert] = useState(null);
+  const [selectCar, setSelectCar] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const dispatch = useDispatch();
   const make = useSelector(selectCarFilter);
   const location = useLocation();
   const page = useSelector(selectPage);
-  const adverts = useSelector(selectFilteredAdverts);
+  const cars = useSelector(selectFilteredCars);
   const hasMore = useSelector(selectHasMore);
 
   useEffect(() => {
-    dispatch(fetchAdverts({ page, make }));
+    dispatch(fetchCars({ page, make }));
   }, [dispatch, page, make]);
 
   useEffect(() => {
-    dispatch(fetchAllAdverts());
+    dispatch(fetchAllCars());
   }, [dispatch]);
 
   useEffect(() => {
     return () => {
-      dispatch(resetAdverts());
+      dispatch(resetCars());
       dispatch(resetFilter());
     };
   }, [dispatch, location.pathname]);
 
   const handleMakeChange = (selectedMake) => {
     dispatch(changeFilter(selectedMake));
-    dispatch(fetchAdverts({ page: 1, make: selectedMake }));
+    dispatch(fetchCars({ page: 1, make: selectedMake }));
   };
 
-  const handleModalOpen = (advert) => {
+  const handleModalOpen = (car) => {
     setIsOpenModal(true);
-    setSelectAdvert(advert);
+    setSelectCar(car);
   };
 
   const closeModal = () => {
     setIsOpenModal(false);
-    setSelectAdvert(null);
+    setSelectCar(null);
   };
 
   const handleLoadMore = () => {
@@ -66,12 +66,12 @@ const CataloguePage = () => {
   return (
     <div>
       <Dropdown onMakeChange={handleMakeChange} />
-      <Catalogue handleModalOpen={handleModalOpen} adverts={adverts} />
+      <Catalogue handleModalOpen={handleModalOpen} cars={cars} />
       {hasMore && <button onClick={handleLoadMore}>Load more</button>}
       <CarDetails
         modalIsOpen={isOpenModal}
         closeModal={closeModal}
-        selectAdvert={selectAdvert}
+        selectCar={selectCar}
       />
     </div>
   );
