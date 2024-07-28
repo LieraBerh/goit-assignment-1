@@ -17,6 +17,7 @@ import {
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { fetchAllCars } from "../../redux/favorites/operations";
 import CarDetails from "../../components/CarDetailsModal/CarDetails";
+import s from "./CataloguePage.module.css";
 
 const CataloguePage = () => {
   const [selectCar, setSelectCar] = useState(null);
@@ -64,10 +65,14 @@ const CataloguePage = () => {
   };
 
   return (
-    <div>
+    <div className={s.page}>
       <Dropdown onMakeChange={handleMakeChange} />
       <Catalogue handleModalOpen={handleModalOpen} cars={cars} />
-      {hasMore && <button onClick={handleLoadMore}>Load more</button>}
+      {hasMore && (
+        <button className={s.load_more} onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
       <CarDetails
         modalIsOpen={isOpenModal}
         closeModal={closeModal}

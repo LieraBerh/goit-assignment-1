@@ -13,6 +13,7 @@ const Dropdown = ({ onMakeChange }) => {
       labelField="label"
       valueField="value"
       onChange={(values) => onMakeChange(values[0]?.value || "")}
+      placeholder="Select car brand"
     />
   );
 };

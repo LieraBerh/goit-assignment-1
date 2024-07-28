@@ -6,6 +6,8 @@ import {
   removeFavorite,
   selectFavorites,
 } from "../../redux/favorites/favoritesSlice";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const CarCard = ({
   id,
@@ -39,10 +41,55 @@ const CarCard = ({
 
   return (
     <div className={s.card_wrapper}>
-      <img
-        src={src}
-        alt={alt}
-        className={s.car_img}
+      <div>
+        <div className={s.img_wrapper}>
+          <img
+            src={src}
+            alt={alt}
+            className={s.car_img}
+            onClick={() =>
+              handleModalOpen({
+                id,
+                src,
+                alt,
+                year,
+                brand,
+                model,
+                rentalPrice,
+                address,
+                rentalCompany,
+                mileage,
+                accessories,
+                rentalConditions,
+              })
+            }
+          />
+        </div>
+        <h3 className={s.card_title}>
+          <span>
+            {brand} {model}, {year}
+          </span>
+          {rentalPrice}
+        </h3>
+        <div className={s.card_text}>
+          <span>{address}</span>
+          <span className={s.card_text_span}>|</span>
+          <span>{rentalCompany}</span>
+          <span className={s.card_text_span}>|</span>
+          <span>{accessories[2]}</span>
+          <span className={s.card_text_span}>|</span>
+          <span>{formattedMileage} miles</span>
+        </div>
+        <button onClick={handleFavoriteClick} className={s.add_fav}>
+          {isFavorite ? (
+            <FaHeart size={18} style={{ fill: "#3470FF" }} />
+          ) : (
+            <FaRegHeart size={18} style={{ fill: "white" }} />
+          )}
+        </button>
+      </div>
+      <button
+        className={s.learn_more}
         onClick={() =>
           handleModalOpen({
             id,
@@ -59,16 +106,8 @@ const CarCard = ({
             rentalConditions,
           })
         }
-      />
-      <h3>
-        {brand} {model} ({year}) - {rentalPrice}
-      </h3>
-      <p>
-        {address} | {rentalCompany} | {accessories[2]} | {formattedMileage}{" "}
-        miles
-      </p>
-      <button onClick={handleFavoriteClick}>
-        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      >
+        Learn More
       </button>
     </div>
   );

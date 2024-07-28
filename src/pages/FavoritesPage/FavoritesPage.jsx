@@ -4,6 +4,8 @@ import { selectFavorites } from "../../redux/favorites/favoritesSlice";
 import Catalogue from "../../components/Catalogue/Catalogue";
 import { useState } from "react";
 import CarDetails from "../../components/CarDetailsModal/CarDetails";
+import s from "./FavoritesPage.module.css";
+import { Link } from "react-router-dom";
 
 const FavoritesPage = () => {
   const [selectCar, setSelectCar] = useState(null);
@@ -32,7 +34,14 @@ const FavoritesPage = () => {
           />
         </div>
       ) : (
-        <p>You haven't added any adverts to favorites yet.</p>
+        <div className={s.empty_content}>
+          <p className={s.empty_text}>
+            You haven't added any adverts to favorites yet.
+          </p>
+          <Link to="/catalogue" className={s.link}>
+            Go to catalogue
+          </Link>
+        </div>
       )}
     </div>
   );

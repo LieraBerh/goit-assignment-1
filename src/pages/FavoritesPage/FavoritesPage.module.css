@@ -1,0 +1,22 @@
+.empty_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.empty_text {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 30px;
+  text-align: center;
+}
+.link {
+  text-decoration: none;
+  color: #1572d3;
+  transition: color 250ms ease-in-out;
+  font-size: 25px;
+  font-weight: 600;
+}
+.link:hover {
+  color: #159ad3;
+}

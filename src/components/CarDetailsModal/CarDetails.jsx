@@ -1,6 +1,7 @@
 import numeral from "numeral";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
+import s from "./CarDetailsModal.module.css";
 
 const customStyles = {
   content: {
@@ -27,8 +28,14 @@ const CarDetails = ({ modalIsOpen, closeModal, selectCar }) => {
         contentLabel="Example Modal"
       >
         {selectCar && (
-          <>
-            <img src={selectCar.src} alt={selectCar.alt} />
+          <div className={s.modal_wrapper}>
+            <div className={s.img_wrapper}>
+              <img
+                src={selectCar.src}
+                alt={selectCar.alt}
+                className={s.modal_img}
+              />
+            </div>
             <h3>
               {selectCar.brand} {selectCar.model} ({selectCar.year})
             </h3>
@@ -38,7 +45,10 @@ const CarDetails = ({ modalIsOpen, closeModal, selectCar }) => {
             <p>Mileage: {numeral(selectCar.mileage).format("0,0")} miles</p>
             <p>Accessories: {selectCar.accessories.join(", ")}</p>
             <p>Rental Conditions - {selectCar.rentalConditions}</p>
-          </>
+            <a href="tel:+380730000000" className={s.rental_button}>
+              Rent Car
+            </a>
+          </div>
         )}
       </Modal>
     </div>
